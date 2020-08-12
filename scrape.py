@@ -2,10 +2,11 @@
 APT SCRAPE
 """
 
-#imports to spreadsheet interface and scraper interface
+# imports to spreadsheet interface and scraper interface
 import scrapers
 
-import sys, argparse
+import sys
+import argparse
 from urllib.parse import urlparse
 
 
@@ -27,7 +28,6 @@ class fields(Enum):
     notes = 11
 
 
-
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser('Scrape apartment sites.')
@@ -35,19 +35,18 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-
     url = urlparse(args.url)
 
+    # url.netloc keeps domain prefix, maybe strip?
     if url.netloc not in scrapers.available:
         sys.exit('No scrapers available for URL.')
 
     s = scrapers.get_scraper(url)
 
     print(s)
-    
-    s.run()
-    
-    
+
+    s.run(url)
+
     # remove duplicates to main data
     # merge with main data
     # upload to google shee

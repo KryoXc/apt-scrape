@@ -2,8 +2,9 @@
 scraper for Rent.com
 """
 
-class Rent():
-    
+
+class RentScraper():
+
     def __init__(self):
 
         self.units = []
