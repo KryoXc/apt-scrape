@@ -19,5 +19,5 @@ class Spread:
         return self.sh.sheet1.get_all_values()
 
     def post(self, data):
-
+    """data should be a list of values, in order"""
         self.sh.sheet1.append_rows(data)

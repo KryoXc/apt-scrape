@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """
 APT SCRAPE
 """
@@ -8,24 +10,6 @@ import scrapers
 import sys
 import argparse
 from urllib.parse import urlparse
-
-
-from enum import Enum
-
-
-class fields(Enum):
-    na = 0
-    name = 1
-    address = 2
-    price = 3
-    sqft = 4
-    deposit = 5
-    beds = 6
-    utilities = 7
-    outdoor = 8
-    messaged = 9
-    link = 10
-    notes = 11
 
 
 if __name__ == "__main__":
@@ -46,6 +30,18 @@ if __name__ == "__main__":
     print(s)
 
     s.run(url)
+    
+    units = s.get_units()
+
+    for unit in units:
+        for field in unit:
+            print(field)
+        print('\n')
+
+    if len(units) == 0:
+        sys.exit('No units found in page.')
+
+    
 
     # remove duplicates to main data
     # merge with main data
